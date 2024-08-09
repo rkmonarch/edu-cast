@@ -1,112 +1,150 @@
+import GradientButton from "../components/shared/GradientButton";
+import { integrations, networks } from "../constants";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Educast",
+  icons: "/favicon.ico",
+};
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="bg-[#060d30] opacity-90">
+      <div className="bg-[url('/svgs/grid.svg')] bg-no-repeat bg-cover bg-center">
+        <div className="px-4 lg:px-0 mx-auto max-w-[1080px] flex justify-center flex-col min-h-[100vh]">
+          <div className="flex justify-center flex-row">
+            <div className="flex flex-col justify-between text-center h-[100vh] py-10 md:py-32">
+              <div className="flex flex-col gap-5">
+                <Image
+                  src="/educast.png"
+                  width="100"
+                  height="100"
+                  className="mx-auto"
+                  alt="Educast"
+                />
+                <h1 className="text-7xl sm:text-6xl font-extrabold text-sky-100">
+                  Educast
+                </h1>
+              </div>
+              <div className="text-4xl tracking-tight font-extrabold text-amber-200 mt-[2rem] sm:text-5xl md:text-6xl lg:px-4 space-y-5">
+                <h2>Supercharge Community</h2>
+                <h2>Growth & Engagement</h2>
+                <h3 className="block tracking-wide text-neutral-200 font-medium text-2xl lg:px-32">
+                  Leading protocols trust our no-code tools for Airdrop and
+                  ERC1155
+                </h3>
+              </div>
+              <div className="mt-10">
+                <GradientButton href="/dashboard" label="Use Launchpad" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="px-4 lg:px-0 mx-auto max-w-[1080px] flex justify-center flex-col min-h-[80vh] bg-[url('/images/arc.png')] bg-no-repeat bg-contain bg-center">
+        <div className="flex justify-center flex-row">
+          <div className="flex flex-col justify-center text-center h-[80vh] py-32 lg:px-32 space-y-20">
+            <h2 className="text-4xl font-semibold text-white sm:text-5xl md:text-6xl mb-5">
+              Empower your Community <br /> with Superpowers
+            </h2>
+            <h3 className="text-sky-200 leading-relaxed font-medium text-2xl lg:px-32">
+              Share claimable link to whitelisted address and track your mint
+              counts on dashboard
+            </h3>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="lg:px-0 mx-auto flex justify-center flex-col min-h-[60vh] space-y-4">
+        <div className="flex justify-center text-[#E4E4ED] space-y-4 md:space-y-0 md:space-x-4 flex-col md:flex-row">
+          <div className="bg-black/50 w-full md:w-2/3 rounded-r-xl p-r-10 flex flex-col items-center justify-center text-center lg:text-left">
+            <div className="flex flex-col space-y-3 lg:space-y-0 lg:flex-row items-center space-x-5 md:space-x-2 lg:space-x-5 max-w-[720px]">
+              {networks.map((network) => (
+                <div
+                  key={network.chain}
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fill rounded-full"
+                >
+                  <Image src={network.logo} width="60" height="60" alt="icon" />
+                </div>
+              ))}
+              <div>
+                <p className="text-sm text-teal-400">COMPATIBLE</p>
+                <p className="text-4xl font-medium">Network</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-black/50 w-full md:w-1/3 rounded-l-xl p-12 flex flex-col items-center md:items-start justify-center text-center lg:text-left">
+            <div className="flex flex-col space-y-3 lg:space-y-0 lg:flex-row items-center space-x-5 md:space-x-2 lg:space-x-5 max-w-[720px]">
+              <div className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] overflow-hidden rounded-full">
+                <Image
+                  src="/svgs/battleTested.svg"
+                  width="60"
+                  height="60"
+                  alt="icon"
+                />
+              </div>
+              <div>
+                <p className="text-sm text-teal-400">BATTLE TESTED</p>
+                <p className="text-4xl font-medium">Smart Contracts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center text-[#E4E4ED] space-y-4 md:space-y-0 md:space-x-4 flex-col md:flex-row">
+          <div className="bg-black/50 w-full md:w-1/3 rounded-r-xl p-r-10 p-12 flex flex-col justify-center items-center text-center space-y-4">
+            <div className="flex items-center space-x-3 max-w-[360px] w-full">
+              <div className="w-full">
+                <p className="text-sm text-teal-400">POWERFUL</p>
+                <p className="text-4xl font-medium">Integrations</p>
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              {integrations.map((integration) => (
+                <div
+                  key={integration.name}
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fill rounded-full"
+                >
+                  <Image
+                    src={integration.logo}
+                    width="60"
+                    height="60"
+                    alt="icon"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-black/50 w-full md:w-2/3 rounded-l-xl p-l-10 p-12 flex flex-col items-start justify-center">
+            <div className="flex items-center space-x-5 max-w-[720px]">
+              <div>
+                <p className="text-sm text-teal-400">COMPATIBLE WITH YOUR</p>
+                <p className="text-4xl font-medium">Trusted Wallets</p>
+              </div>
+              <div className="flex space-x-4">
+                <div className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] overflow-hidden rounded-full">
+                  <Image
+                    src="/logos/metamask.jpeg"
+                    width="60"
+                    height="60"
+                    alt="icon"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[url('/images/boxgrid.png')] bg-top bg-cover bg-fixed">
+        <div className="px-4 lg:px-0 mx-auto max-w-[1080px] flex justify-center flex-col min-h-[70vh]">
+          <div className="flex justify-center flex-row">
+            <div className="flex flex-col justify-center items-center text-center h-[70vh] py-32 lg:px-32 space-y-20">
+              <h2 className="text-4xl font-semibold text-amber-50 sm:text-5xl">
+                Grow Your Community <br /> Today With Us
+              </h2>
+              <GradientButton label="Get Started" href="/dashboard" />
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
