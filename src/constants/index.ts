@@ -40,6 +40,8 @@ const integrations = [
 import { CampaignData, Campaigns } from "./types";
 import { launchPadABI, launchPadNFTABI } from "../../contracts/abi";
 
+const contractAddress = '0xA879BD8bEa033f31d363490f6fe5E709Ff986B3a';
+
 export {
   networks,
   integrations,

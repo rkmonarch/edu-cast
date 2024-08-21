@@ -1,4 +1,5 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
+import { defineChain } from "viem";
 import {
   arbitrumSepolia,
   filecoinCalibration,
@@ -18,13 +19,29 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
-const chains = [
-  arbitrumSepolia,
-  morphSepolia,
-  neonDevnet,
-  sepolia,
-  filecoinCalibration,
-] as const;
+const eduChain = defineChain({
+  id: 656_476,
+  name: "EduChain",
+  nativeCurrency: {
+    name: "EDU ETHER",
+    symbol: "EDU",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.open-campus-codex.gelato.digital"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "OpenCampus",
+      url: "https://opencampus-codex.blockscout.com/",
+    },
+  },
+  testnet: true,
+});
+
+const chains = [eduChain] as const;
 export const config = defaultWagmiConfig({
   chains,
   projectId,
