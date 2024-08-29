@@ -1,11 +1,11 @@
 "use client";
 
+import { config, projectId } from "@/lib/config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { ThemeProvider } from "next-themes";
 import { ReactNode } from "react";
 import { State, WagmiProvider } from "wagmi";
-import { config, projectId } from "../config";
 
 const queryClient = new QueryClient();
 

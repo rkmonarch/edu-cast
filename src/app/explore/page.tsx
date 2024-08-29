@@ -5,7 +5,7 @@ import {
   launchPadABI,
   type CampaignData,
   type Campaigns,
-} from "@/constants";
+} from "@/lib/constants";
 import { Metadata } from "next";
 import { useEffect, useState } from "react";
 import { formatEther } from "viem";

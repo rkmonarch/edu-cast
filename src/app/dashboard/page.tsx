@@ -1,6 +1,6 @@
 "use client";
 import { Layout, Table } from "@/components";
-import { contractAddress, launchPadABI } from "@/constants";
+import { contractAddress, launchPadABI } from "@/lib/constants";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

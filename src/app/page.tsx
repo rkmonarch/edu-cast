@@ -1,7 +1,7 @@
+import GradientButton from "@/components/shared/GradientButton";
+import { integrations, networks, walletIntegrations } from "@/lib/constants";
 import { Metadata } from "next";
 import Image from "next/image";
-import GradientButton from "../components/shared/GradientButton";
-import { integrations, networks, walletIntegrations } from "../constants";
 
 export const metadata: Metadata = {
   title: "Edupad",

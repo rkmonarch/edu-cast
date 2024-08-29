@@ -35,6 +35,7 @@ const eduChain = defineChain({
 });
 
 const chains = [eduChain] as const;
+
 export const config = defaultWagmiConfig({
   chains,
   projectId,

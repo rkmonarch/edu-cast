@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- To avoid img element warning */
-import { launchPadNFTABI, type Campaigns } from "@/constants";
+import { launchPadNFTABI, type Campaigns } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
