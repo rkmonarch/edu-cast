@@ -3,8 +3,9 @@ import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "EduCast",
+  title: "Edupad",
   description: "Token launchpad",
+  icons: "/edupad.png",
 };
 
 export default function RootLayout({

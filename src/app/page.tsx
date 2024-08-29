@@ -4,8 +4,9 @@ import GradientButton from "../components/shared/GradientButton";
 import { integrations, networks, walletIntegrations } from "../constants";
 
 export const metadata: Metadata = {
-  title: "Educast",
-  icons: "/educast.png",
+  title: "Edupad",
+  description: "Token launchpad",
+  icons: "/edupad.png",
 };
 
 export default function Home() {
@@ -17,14 +18,14 @@ export default function Home() {
             <div className="flex flex-col justify-between text-center h-[100vh] py-10 md:py-32">
               <div className="flex flex-col gap-5">
                 <Image
-                  src="/educast.png"
+                  src="/edupad.svg"
                   width="100"
                   height="100"
                   className="mx-auto"
-                  alt="Educast"
+                  alt="Edupad"
                 />
                 <h1 className="text-7xl sm:text-6xl font-extrabold text-sky-100">
-                  Educast
+                  Edupad
                 </h1>
               </div>
               <div className="text-4xl tracking-tight font-extrabold text-amber-200 mt-[2rem] sm:text-5xl md:text-6xl lg:px-4 space-y-5">

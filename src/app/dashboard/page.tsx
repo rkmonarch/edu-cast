@@ -1,11 +1,18 @@
 "use client";
 import { Layout, Table } from "@/components";
 import { contractAddress, launchPadABI } from "@/constants";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { useAccount, useReadContract } from "wagmi";
+
+export const metadata: Metadata = {
+  title: "Dashboard | Edupad",
+  description: "Token launchpad",
+  icons: "/edupad.png",
+};
 
 type CardProps = {
   heading: string;

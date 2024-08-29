@@ -6,10 +6,10 @@ export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 if (!projectId) throw new Error("Project ID is not defined");
 
 const metadata = {
-  name: "Educast",
+  name: "Edupad",
   description: "ERC1155 Launchpad",
-  url: "https://educast.vercel.app",
-  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  url: "https://edupad.vercel.app",
+  icons: ["/edupad.svg"],
 };
 
 const eduChain = defineChain({

@@ -1,6 +1,7 @@
 "use client";
 import { Checkbox, Input, Layout, Upload } from "@/components";
-import { launchPadABI } from "@/constants";
+import { contractAddress, launchPadABI } from "@/constants";
+import { Metadata } from "next";
 import Image from "next/image";
 import { NFTStorage } from "nft.storage";
 import { useEffect, useState } from "react";
@@ -12,7 +13,11 @@ import {
   useWriteContract,
 } from "wagmi";
 
-let contractAddress: `0x${string}`;
+export const metadata: Metadata = {
+  title: "Create Membership",
+  description: "Token launchpad",
+  icons: "/edupad.png",
+};
 
 const Launchpad = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -62,15 +67,6 @@ const Launchpad = () => {
       description: description,
       image: imageUrl,
     };
-    if (!contractAddress) {
-      toast.error("Please connect supported network", {
-        icon: "🚨",
-        style: {
-          borderRadius: "10px",
-        },
-      });
-      return;
-    }
     const apiResponse = await fetch("/api", {
       method: "POST",
       body: JSON.stringify(metadata),

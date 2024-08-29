@@ -6,9 +6,16 @@ import {
   type CampaignData,
   type Campaigns,
 } from "@/constants";
+import { Metadata } from "next";
 import { useEffect, useState } from "react";
 import { formatEther } from "viem";
 import { useAccount, useReadContract } from "wagmi";
+
+export const metadata: Metadata = {
+  title: "Explore | Edupad",
+  description: "Token launchpad",
+  icons: "/edupad.png",
+};
 
 const Explore = () => {
   const [campaigns, setCampaigns] = useState<Campaigns[]>([]);

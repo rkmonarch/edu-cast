@@ -56,14 +56,14 @@ const Sidebar = () => {
       <div className="px-3 justify-start items-center">
         <Link href="/" className="flex justify-start items-center mt-2 mb-8">
           <Image
-            src="/educast.png"
+            src="/edupad.svg"
             width="30"
             height="30"
-            alt="educast"
+            alt="edupad"
             className="mr-3"
           />
           <span className="hidden md:flex font-bold text-xl dark:text-[#F8FBFC]">
-            Educast
+            Edupad
           </span>
         </Link>
         <ul className="flex flex-col items-center justify-center w-full">
