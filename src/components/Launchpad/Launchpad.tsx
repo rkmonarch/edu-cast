@@ -2,7 +2,6 @@
 
 import { contractAddress, launchPadABI } from "@/lib/constants";
 import Image from "next/image";
-import { NFTStorage } from "nft.storage";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { parseEther } from "viem";
@@ -26,8 +25,6 @@ const Launchpad = () => {
   const [price, setPrice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
-  const NFT_STORAGE_TOKEN = process.env.NEXT_PUBLIC_NFT_STORAGE_TOKEN!;
-  const client = new NFTStorage({ token: NFT_STORAGE_TOKEN });
   const { address } = useAccount();
 
   const { data, writeContractAsync, status, isError } = useWriteContract();
@@ -38,6 +35,71 @@ const Launchpad = () => {
   } = useWaitForTransactionReceipt({
     hash: data,
   });
+
+  const uploadFile = async (fileToUpload: File) => {
+    try {
+      setIsImageUploading(true);
+      const data = new FormData();
+      data.append("file", fileToUpload);
+      const response = await fetch("/api/files", {
+        method: "POST",
+        body: data,
+      });
+      const resData = await response.json();
+      setImageUrl(
+        `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${resData.IpfsHash}`,
+      );
+    } catch (e) {
+      console.log(e);
+      toast.error("Failed to upload image, please try again later.", {
+        icon: "🚧",
+        style: {
+          borderRadius: "10px",
+        },
+      });
+    } finally {
+      setIsImageUploading(false);
+    }
+  };
+
+  const handleCreateMembership = async () => {
+    setIsLoading(true);
+    try {
+      const metadata = {
+        name: name,
+        description: description,
+        image: imageUrl,
+      };
+
+      const apiResponse = await fetch("/api/json", {
+        method: "POST",
+        body: JSON.stringify(metadata),
+      });
+
+      const resData = await apiResponse.json();
+
+      await writeContractAsync({
+        account: address,
+        address: contractAddress,
+        abi: launchPadABI,
+        functionName: "createNFT",
+        args: [
+          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/${resData.IpfsHash}`,
+          supply,
+          maxSupplyFlag,
+          parseEther(price.toString()),
+          address,
+        ],
+      });
+    } catch (e) {
+      toast.error("Failed to upload image, please try again later.", {
+        icon: "🚧",
+        style: {
+          borderRadius: "10px",
+        },
+      });
+    }
+  };
 
   useEffect(() => {
     if (status === "success" && isSuccess && isValid === "success") {
@@ -57,35 +119,6 @@ const Launchpad = () => {
     }
   }, [status, isSuccess, isTxError, isError, isValid]);
 
-  const handleCreateMembership = async () => {
-    setIsLoading(true);
-    const metadata = {
-      name: name,
-      description: description,
-      image: imageUrl,
-    };
-    const apiResponse = await fetch("/api", {
-      method: "POST",
-      body: JSON.stringify(metadata),
-    });
-
-    const { hash } = await apiResponse.json();
-
-    await writeContractAsync({
-      account: address,
-      address: contractAddress,
-      abi: launchPadABI,
-      functionName: "createNFT",
-      args: [
-        `https://ipfs.moralis.io:2053/ipfs/${hash}`,
-        supply,
-        maxSupplyFlag,
-        parseEther(price.toString()),
-        address,
-      ],
-    });
-  };
-
   return (
     <Layout>
       <div className="flex flex-col space-y-8 justify-center items-center max-w-[800px] mx-auto pb-10 lg:pl-0">
@@ -104,7 +137,7 @@ const Launchpad = () => {
         <form className="flex flex-col space-y-4 w-[90%] md:max-w-[600px] mx-auto">
           <Image
             className="mx-auto w-[14rem] h-[14rem] bg-gradient-to-tr from-[#ADE1FF] to-sky-400 rounded-lg object-fill"
-            src={image !== "" ? image : "/images/preview.png"}
+            src={image ? image : "/images/preview.png"}
             alt="preview"
             width={200}
             height={200}
@@ -116,17 +149,10 @@ const Launchpad = () => {
               type="file"
               label="Upload Image"
               accept="image/*"
-              onChange={(e: any) => {
-                setIsImageUploading(true);
+              onChange={async (e) => {
                 const image = URL.createObjectURL(e.target.files[0]);
                 setImage(image);
-                const file = e.target.files;
-                client.storeDirectory(file).then((cid) => {
-                  setImageUrl(
-                    `https://${cid}.ipfs.nftstorage.link/${file[0].name}`,
-                  );
-                  setIsImageUploading(false);
-                });
+                await uploadFile(e.target.files[0]);
               }}
             />
           </div>
@@ -215,7 +241,7 @@ const Launchpad = () => {
             {isImageUploading
               ? "Uploading Image..."
               : isLoading
-                ? "Creating NFT membership..."
+                ? "Drafting membership..."
                 : "Create Membership 🚀"}
           </button>
         </form>
