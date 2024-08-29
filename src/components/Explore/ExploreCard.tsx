@@ -82,9 +82,7 @@ const Card = ({ name, price, image, nftAddress }: Campaigns) => {
           {price} ETH
         </p>
         <button
-          onClick={() => {
-            router.push(`${nftAddress}`);
-          }}
+          onClick={handleMint}
           className="bg-gradient-to-br from-[#ffd84b] from-[20%] to-[#e6b366] hover:from-[#ffd643] hover:from-[20%] hover:to-[#d0a564] text-neutral-800 font-medium items-center rounded-lg px-5 py-1.5 disabled:opacity-70 disabled:cursor-progress"
           disabled={isLoading}
         >

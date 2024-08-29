@@ -28,15 +28,22 @@ const Explore = () => {
     let nfts = [];
     console.log(data);
     for (let nft of data as CampaignData[]) {
-      const response = await fetch(nft.uri);
-      const pd = await response.json();
-      nfts.push({
-        name: pd.name,
-        description: pd.description,
-        image: pd.image,
-        price: formatEther(BigInt(nft.nftPrice)),
-        nftAddress: nft.nftAddress,
-      });
+      try {
+        console.log("uri", nft.uri);
+        const response = await fetch(nft.uri);
+        console.log("response", response);
+        const pd = await response.json();
+        nfts.push({
+          name: pd.name,
+          description: pd.description,
+          image: pd.image,
+          price: formatEther(BigInt(nft.nftPrice)),
+          nftAddress: nft.nftAddress,
+        });
+      } catch (error) {
+        console.error("Error processing NFT:", error);
+        continue; // Skip to the next iteration
+      }
     }
     setCampaigns(nfts);
     setIsLoading(false);

@@ -10,10 +10,10 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
-import Checkbox from "../Form/Checkbox";
-import Input from "../Form/Input";
-import Upload from "../Form/Upload";
 import Layout from "../Shared/Layout";
+import Checkbox from "../form/checkbox";
+import Input from "../form/input";
+import Upload from "../form/upload";
 
 const Launchpad = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -46,8 +46,10 @@ const Launchpad = () => {
         body: data,
       });
       const resData = await response.json();
+      console.log("img", resData);
+
       setImageUrl(
-        `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${resData.IpfsHash}`,
+        `${process.env.NEXT_PUBLIC_GATEWAY_URL}${resData.IpfsHash}?pinataGatewayToken=${process.env.NEXT_PUBLIC_GATEWAY_TOKEN}`,
       );
     } catch (e) {
       console.log(e);
@@ -78,13 +80,15 @@ const Launchpad = () => {
 
       const resData = await apiResponse.json();
 
+      console.log("resData", resData);
+
       await writeContractAsync({
         account: address,
         address: contractAddress,
         abi: launchPadABI,
         functionName: "createNFT",
         args: [
-          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/${resData.IpfsHash}`,
+          `${process.env.NEXT_PUBLIC_GATEWAY_URL}${resData.IpfsHash}?pinataGatewayToken=${process.env.NEXT_PUBLIC_GATEWAY_TOKEN}`,
           supply,
           maxSupplyFlag,
           parseEther(price.toString()),

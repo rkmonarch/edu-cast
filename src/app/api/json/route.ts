@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
     };
     const response = await pinata.pinJSONToIPFS(json, options);
     const { IpfsHash } = response;
-
     return NextResponse.json({ IpfsHash }, { status: 200 });
   } catch (e) {
     console.log(e);
