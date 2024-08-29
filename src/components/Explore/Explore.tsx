@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { formatEther } from "viem";
 import { useAccount, useReadContract } from "wagmi";
-import Layout from "../shared/Layout";
+import Layout from "../Shared/Layout";
 import Card from "./ExploreCard";
 
 const Explore = () => {

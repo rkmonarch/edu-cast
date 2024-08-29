@@ -4,7 +4,7 @@ import { contractAddress, launchPadABI, tableHeaders } from "@/lib/constants";
 import { useEffect, useState } from "react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { useAccount, useReadContract } from "wagmi";
-import Layout from "../shared/Layout";
+import Layout from "../Shared/Layout";
 import { Card } from "./DashboardCard";
 import Table from "./Table";
 

@@ -1,4 +1,4 @@
-import GradientButton from "@/components/shared/GradientButton";
+import GradientButton from "@/components/Shared/GradientButton";
 import { integrations, networks, walletIntegrations } from "@/lib/constants";
 import { Metadata } from "next";
 import Image from "next/image";
