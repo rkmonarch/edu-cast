@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { useAccount, useReadContract } from "wagmi";
 import Layout from "../shared/Layout";
-import { Card } from "./Card";
+import { Card } from "./DashboardCard";
 import Table from "./Table";
 
 const Dashboard = () => {

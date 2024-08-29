@@ -1,5 +1,5 @@
 import Table from "./Dashboard/Table";
-import Card from "./explore/Card";
+import Card from "./Explore/ExploreCard";
 import Checkbox from "./form/checkbox";
 import Input from "./form/input";
 import Upload from "./form/upload";
