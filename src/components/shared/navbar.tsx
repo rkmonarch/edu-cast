@@ -1,7 +1,7 @@
 "use client";
-import { BiSun, BiMoon } from "react-icons/bi";
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { BiMoon, BiSun } from "react-icons/bi";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();

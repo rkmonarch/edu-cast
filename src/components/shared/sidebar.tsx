@@ -1,9 +1,8 @@
-import React from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { RiSendPlaneFill, RiNftFill } from "react-icons/ri";
+import Link from "next/link";
 import { FiHome } from "react-icons/fi";
 import { MdOutlineExplore } from "react-icons/md";
+import { RiNftFill, RiSendPlaneFill } from "react-icons/ri";
 
 type NavItemProps = {
   link: string;

@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import Sidebar from "./sidebar";
-import Navbar from "./navbar";
+import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
+import Navbar from "./navbar";
+import Sidebar from "./sidebar";
 
 interface ILayout {
   children: ReactNode;

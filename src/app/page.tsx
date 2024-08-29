@@ -1,11 +1,11 @@
-import GradientButton from "../components/shared/GradientButton";
-import { integrations, networks } from "../constants";
-import Image from "next/image";
 import { Metadata } from "next";
+import Image from "next/image";
+import GradientButton from "../components/shared/GradientButton";
+import { integrations, networks, walletIntegrations } from "../constants";
 
 export const metadata: Metadata = {
   title: "Educast",
-  icons: "/favicon.ico",
+  icons: "/educast.png",
 };
 
 export default function Home() {
@@ -59,12 +59,17 @@ export default function Home() {
         <div className="flex justify-center text-[#E4E4ED] space-y-4 md:space-y-0 md:space-x-4 flex-col md:flex-row">
           <div className="bg-black/50 w-full md:w-2/3 rounded-r-xl p-r-10 flex flex-col items-center justify-center text-center lg:text-left">
             <div className="flex flex-col space-y-3 lg:space-y-0 lg:flex-row items-center space-x-5 md:space-x-2 lg:space-x-5 max-w-[720px]">
-              {networks.map((network) => (
+              {networks.map((network, index) => (
                 <div
-                  key={network.chain}
-                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fill rounded-full"
+                  key={index}
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit rounded-full"
                 >
-                  <Image src={network.logo} width="60" height="60" alt="icon" />
+                  <Image
+                    src={network.logo}
+                    width="60"
+                    height="60"
+                    alt={network.chain}
+                  />
                 </div>
               ))}
               <div>
@@ -99,16 +104,16 @@ export default function Home() {
               </div>
             </div>
             <div className="flex space-x-2">
-              {integrations.map((integration) => (
+              {integrations.map((integration, index) => (
                 <div
-                  key={integration.name}
-                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fill rounded-full"
+                  key={index}
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit rounded-full"
                 >
                   <Image
                     src={integration.logo}
                     width="60"
                     height="60"
-                    alt="icon"
+                    alt={integration.name}
                   />
                 </div>
               ))}
@@ -121,14 +126,19 @@ export default function Home() {
                 <p className="text-4xl font-medium">Trusted Wallets</p>
               </div>
               <div className="flex space-x-4">
-                <div className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] overflow-hidden rounded-full">
-                  <Image
-                    src="/logos/metamask.jpeg"
-                    width="60"
-                    height="60"
-                    alt="icon"
-                  />
-                </div>
+                {walletIntegrations.map((walletIntegration, index) => (
+                  <div
+                    key={index}
+                    className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit overflow-hidden rounded-full"
+                  >
+                    <Image
+                      src={walletIntegration.logo}
+                      width="60"
+                      height="60"
+                      alt={walletIntegration.name}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

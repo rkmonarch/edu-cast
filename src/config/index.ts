@@ -1,12 +1,5 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 import { defineChain } from "viem";
-import {
-  arbitrumSepolia,
-  filecoinCalibration,
-  morphSepolia,
-  neonDevnet,
-  sepolia,
-} from "viem/chains";
 
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
