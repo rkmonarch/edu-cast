@@ -1,5 +1,3 @@
-"use client";
-
 import Explore from "@/components/Explore/Explore";
 import { Metadata } from "next";
 
