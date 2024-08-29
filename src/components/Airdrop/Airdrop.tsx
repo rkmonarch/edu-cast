@@ -27,18 +27,24 @@ export default function Airdrop() {
     functionName: "getNFTsWithMetadataCreatedByCreator",
     args: [address],
   });
-
+  console.log(data);
   const fetchData = async () => {
-    let nfts = [{}];
-    for (let nft of data as any) {
-      const response = await fetch(nft.uri);
-      const json = await response.json();
-      nfts.push({
-        name: json.name,
-        value: nft.nftAddress,
-      });
+    try {
+      let nfts = [{}];
+      for (let nft of data as any) {
+        const response = await fetch(nft.uri);
+        const json = await response.json();
+
+        console.log(json);
+        nfts.push({
+          name: json.name,
+          value: nft.nftAddress,
+        });
+      }
+      setNftAddresses(nfts);
+    } catch (error) {
+      console.log(error);
     }
-    setNftAddresses(nfts);
   };
 
   useEffect(() => {
@@ -126,7 +132,7 @@ export default function Airdrop() {
           </div>
           <div className="flex w-[100%] bg-[#1e1e1e] drop-shadow-lg text-gray-300 md:max-w-[600px] mx-auto p-5 mt-2 justify-center border border-gray-600 rounded-xl">
             {`curl  -X POST \
-  'https://token-xdc.vercel.app/api/airdrop' \
+  'https://edupad.vercel.app/api/airdrop' \
   --header 'Accept: */*' \
   --header 'Content-Type: application/json' \
   --data-raw '{
@@ -144,7 +150,7 @@ export default function Airdrop() {
           </div>
         </div>
         <button
-          className="w-[100px] mx-auto text-[#9FF3FF] dark:text-[#131619] hover:bg-black items-center justify-center dark:hover:bg-[#95e5f2] focus:ring-1 focus:outline-none focus:ring-[#cfcfcf] font-medium rounded-xl text-sm px-5 py-2.5 text-center shadow-none drop-shadow-xl"
+          className="w-[100px] mx-auto text-[#9FF3FF] dark:text-[#131619] hover:bg-black bg-white items-center justify-center dark:hover:bg-[#95e5f2] focus:ring-1 focus:outline-none focus:ring-[#cfcfcf] font-medium rounded-xl text-sm px-5 py-2.5 text-center shadow-none drop-shadow-xl"
           onClick={async () => {
             const response = await fetch("/api/airdrop", {
               method: "POST",
