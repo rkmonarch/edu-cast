@@ -4,7 +4,7 @@ import { CampaignData, Campaigns } from "./types";
 export const networks = [
   {
     chain: "EduChain",
-    logo: "/logos/educhain.jpeg",
+    logo: "/logos/educhain.png",
   },
 ];
 
@@ -29,3 +29,10 @@ export const walletIntegrations = [
 export const contractAddress = "0xA879BD8bEa033f31d363490f6fe5E709Ff986B3a"; // TODO: Educhain Contract Address
 
 export { launchPadABI, launchPadNFTABI, type CampaignData, type Campaigns };
+
+export const tableHeaders = [
+  "Name",
+  "Total Mints",
+  "Reward Amount (in ETH)",
+  "",
+];

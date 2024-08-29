@@ -57,12 +57,12 @@ const Sidebar = () => {
         <Link href="/" className="flex justify-start items-center mt-2 mb-8">
           <Image
             src="/edupad.svg"
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             alt="edupad"
             className="mr-3"
           />
-          <span className="hidden md:flex font-bold text-xl dark:text-[#F8FBFC]">
+          <span className="hidden md:flex font-bold text-2xl dark:text-[#F8FBFC]">
             Edupad
           </span>
         </Link>

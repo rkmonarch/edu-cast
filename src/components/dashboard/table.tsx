@@ -1,4 +1,3 @@
-"use client";
 import { launchPadNFTABI } from "@/lib/constants";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";

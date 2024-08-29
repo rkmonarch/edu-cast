@@ -15,20 +15,25 @@ export default function Home() {
       <div className="bg-[url('/svgs/grid.svg')] bg-no-repeat bg-cover bg-center">
         <div className="px-4 lg:px-0 mx-auto max-w-[1080px] flex justify-center flex-col min-h-[100vh]">
           <div className="flex justify-center flex-row">
-            <div className="flex flex-col justify-between text-center h-[100vh] py-10 md:py-32">
-              <div className="flex flex-col gap-5">
-                <Image
-                  src="/edupad.svg"
-                  width="100"
-                  height="100"
-                  className="mx-auto"
-                  alt="Edupad"
-                />
-                <h1 className="text-7xl sm:text-6xl font-extrabold text-sky-100">
-                  Edupad
-                </h1>
+            <div className="flex flex-col justify-between text-center h-[90vh] py-10 md:py-32">
+              <div className="flex flex-col gap-10">
+                <span className="flex items-center gap-6 mx-auto">
+                  <Image
+                    src="/edupad.svg"
+                    width="60"
+                    height="60"
+                    className=""
+                    alt="Edupad"
+                  />
+                  <h1 className="text-7xl sm:text-[5.5rem] font-bold">
+                    Edupad
+                  </h1>
+                </span>
+                <span className="text-2xl italic font-medium text-cyan-300">
+                  powered by EDUCHAIN
+                </span>
               </div>
-              <div className="text-4xl tracking-tight font-extrabold text-amber-200 mt-[2rem] sm:text-5xl md:text-6xl lg:px-4 space-y-5">
+              <div className="text-4xl tracking-tight font-semibold text-amber-200 mt-[2rem] sm:text-5xl md:text-6xl lg:px-4 space-y-5">
                 <h2>Supercharge Community</h2>
                 <h2>Growth & Engagement</h2>
                 <h3 className="block tracking-wide text-neutral-200 font-medium text-2xl lg:px-32">
@@ -37,7 +42,7 @@ export default function Home() {
                 </h3>
               </div>
               <div className="mt-10">
-                <GradientButton href="/dashboard" label="Use Launchpad" />
+                <GradientButton href="/dashboard" label="Get started" />
               </div>
             </div>
           </div>
@@ -63,7 +68,7 @@ export default function Home() {
               {networks.map((network, index) => (
                 <div
                   key={index}
-                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit rounded-full"
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center object-fit rounded-full"
                 >
                   <Image
                     src={network.logo}
@@ -81,7 +86,7 @@ export default function Home() {
           </div>
           <div className="bg-black/50 w-full md:w-1/3 rounded-l-xl p-12 flex flex-col items-center md:items-start justify-center text-center lg:text-left">
             <div className="flex flex-col space-y-3 lg:space-y-0 lg:flex-row items-center space-x-5 md:space-x-2 lg:space-x-5 max-w-[720px]">
-              <div className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] overflow-hidden rounded-full">
+              <div className="bg-neutral-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] overflow-hidden rounded-full">
                 <Image
                   src="/svgs/battleTested.svg"
                   width="60"
@@ -108,7 +113,7 @@ export default function Home() {
               {integrations.map((integration, index) => (
                 <div
                   key={index}
-                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit rounded-full"
+                  className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center object-fit rounded-full"
                 >
                   <Image
                     src={integration.logo}
@@ -130,7 +135,7 @@ export default function Home() {
                 {walletIntegrations.map((walletIntegration, index) => (
                   <div
                     key={index}
-                    className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center p-[4px] object-fit overflow-hidden rounded-full"
+                    className="bg-sky-100 w-[60px] h-[60px] flex items-center justify-center object-fit overflow-hidden rounded-full"
                   >
                     <Image
                       src={walletIntegration.logo}
@@ -152,7 +157,7 @@ export default function Home() {
               <h2 className="text-4xl font-semibold text-amber-50 sm:text-5xl">
                 Grow Your Community <br /> Today With Us
               </h2>
-              <GradientButton label="Get Started" href="/dashboard" />
+              <GradientButton label="Try now!" href="/dashboard" />
             </div>
           </div>
         </div>

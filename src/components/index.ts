@@ -1,4 +1,4 @@
-import Table from "./dashboard/table";
+import Table from "./Dashboard/Table";
 import Card from "./explore/Card";
 import Checkbox from "./form/checkbox";
 import Input from "./form/input";
