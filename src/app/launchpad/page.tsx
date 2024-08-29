@@ -1,4 +1,4 @@
-import Launchpad from "@/components/Launchpad/Launchpad";
+import Launchpad from "@/components/Launch/Launchpad";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

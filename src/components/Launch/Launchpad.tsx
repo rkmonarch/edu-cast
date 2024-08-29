@@ -10,10 +10,10 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
-import Checkbox from "../Form/Checkbox";
-import Input from "../Form/Input";
-import Upload from "../Form/Upload";
-import Layout from "../Shared/Layout";
+import Layout from "../Common/Layout";
+import Input from "../FormComp/Input";
+import Upload from "../FormComp/Upload";
+import Checkbox from "../FormComp/checkBoxUI";
 
 const Launchpad = () => {
   const [imageUrl, setImageUrl] = useState("");

@@ -26,7 +26,7 @@ export const walletIntegrations = [
   },
 ];
 
-export const contractAddress = "0xA879BD8bEa033f31d363490f6fe5E709Ff986B3a";
+export const contractAddress = "0x88C2fBD9e18acC2e034b7B0456B16e7626768C42";
 
 export { launchPadABI, launchPadNFTABI, type CampaignData, type Campaigns };
 

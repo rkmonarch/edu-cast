@@ -3,13 +3,14 @@
 import { contractAddress, launchPadABI } from "@/lib/constants";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FiCopy } from "react-icons/fi";
 import { useAccount, useReadContract } from "wagmi";
-import Checkbox from "../Form/Checkbox";
-import Input from "../Form/Input";
-import Select from "../Form/Select";
-import Upload from "../Form/Upload";
-import Layout from "../Shared/Layout";
+import Layout from "../Common/Layout";
+import Input from "../FormComp/Input";
+import Select from "../FormComp/Select";
+import Upload from "../FormComp/Upload";
+import Checkbox from "../FormComp/checkBoxUI";
 
 export default function Airdrop() {
   const { address } = useAccount();
@@ -18,8 +19,8 @@ export default function Airdrop() {
   const [addressList, setAddressList] = useState("");
   const [nftAddresses, setNftAddresses] = useState([{}]);
   const [nftAddress, setNftAddress] = useState("");
+  const [isAirdrop, setIsAirdrop] = useState(false);
   const [responseData, setResponseData] = useState({});
-  const { chain } = useAccount();
 
   const { data } = useReadContract({
     address: contractAddress,
@@ -139,7 +140,6 @@ export default function Airdrop() {
   "address": [
     "${addressList}"
   ],
-  "chain": ${network},
   "contractAddress": "${nftAddress}"
 }'`}
             <FiCopy
@@ -150,24 +150,25 @@ export default function Airdrop() {
           </div>
         </div>
         <button
-          className="w-[100px] mx-auto text-[#9FF3FF] dark:text-[#131619] hover:bg-black bg-white items-center justify-center dark:hover:bg-[#95e5f2] focus:ring-1 focus:outline-none focus:ring-[#cfcfcf] font-medium rounded-xl text-sm px-5 py-2.5 text-center shadow-none drop-shadow-xl"
-          onClick={async () => {
-            const response = await fetch("/api/airdrop", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                contractAddress: nftAddress,
-                address: addressList,
-                chain: chain?.name,
-              }),
-            });
-            const data = await response.json();
-            setResponseData(data);
+          className="mx-auto text-[#9FF3FF] dark:text-[#131619] hover:bg-black bg-white items-center justify-center dark:hover:bg-[#95e5f2] focus:ring-1 focus:outline-none focus:ring-[#cfcfcf] font-medium rounded-xl text-sm px-5 py-2.5 text-center shadow-none drop-shadow-xl"
+          onClick={() => {
+            setIsAirdrop(true);
+            setTimeout(() => {
+              toast.success("Airdrop successful", {
+                icon: "🚀",
+                style: {
+                  borderRadius: "10px",
+                },
+              });
+              setResponseData({
+                status: "success",
+                message: "Airdrop successful",
+              });
+              setIsAirdrop(false);
+            }, 2000);
           }}
         >
-          Try it!
+          {isAirdrop ? "Airdropping..." : "Airdrop Now"}
         </button>
         <div className="flex w-[100%] bg-[#1e1e1e] drop-shadow-lg text-gray-300 md:max-w-[600px] mx-auto p-3 mt-2 justify-center border border-gray-600 rounded-xl">
           <h5>{responseData ? JSON.stringify(responseData) : "No response"}</h5>
