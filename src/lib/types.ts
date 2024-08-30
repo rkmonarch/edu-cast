@@ -14,3 +14,9 @@ export interface Campaigns {
   price: string;
   nftAddress: string;
 }
+
+export type MintProps = {
+  params: {
+    address: string;
+  };
+};

@@ -33,6 +33,6 @@ export { launchPadABI, launchPadNFTABI, type CampaignData, type Campaigns };
 export const tableHeaders = [
   "Name",
   "Total Mints",
-  "Reward Amount (in ETH)",
+  "Reward Amount (in EDU)",
   "",
 ];

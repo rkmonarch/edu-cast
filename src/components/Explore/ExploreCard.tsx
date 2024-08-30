@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { RiShareBoxLine } from "react-icons/ri";
 import { parseEther } from "viem";
 import {
   useAccount,
@@ -79,15 +80,25 @@ const Card = ({ name, price, image, nftAddress }: Campaigns) => {
       </div>
       <div className="flex flex-row mt-2 justify-between items-center">
         <p className="text-neutral-700 dark:text-cyan-200 font-normal">
-          {price} ETH
+          {price} EDU
         </p>
-        <button
-          onClick={handleMint}
-          className="bg-gradient-to-br from-[#ffd84b] from-[20%] to-[#e6b366] hover:from-[#ffd643] hover:from-[20%] hover:to-[#d0a564] text-neutral-800 font-medium items-center rounded-lg px-5 py-1.5 disabled:opacity-70 disabled:cursor-progress"
-          disabled={isLoading}
-        >
-          Mint
-        </button>
+        <span className="flex items-center gap-3">
+          <button
+            className="text-neutral-400 w-fit"
+            onClick={() => {
+              router.push(`/${nftAddress}`);
+            }}
+          >
+            <RiShareBoxLine size={25} />
+          </button>
+          <button
+            onClick={handleMint}
+            className="bg-gradient-to-br from-[#ffd84b] from-[20%] to-[#e6b366] hover:from-[#ffd643] hover:from-[20%] hover:to-[#d0a564] text-neutral-800 font-medium items-center rounded-lg px-5 py-1.5 disabled:opacity-70 disabled:cursor-progress"
+            disabled={isLoading}
+          >
+            Mint
+          </button>
+        </span>
       </div>
     </div>
   );
