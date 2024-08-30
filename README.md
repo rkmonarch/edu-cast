@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Edupad
 
-## Getting Started
+Edupad provides an interactive no-code platform that allows users to create a NFT collection on Educhain network. It empowers creators to build thriving web3 communities on Educhain. We desire to provide a launchpad that simplifies community, monetization, and growth. It also provides a developer tool to airdrop NFTs in batches just by providing a recipients list. This is powerful and enhances the adaptability of an easy-to-go launchpad.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Every user must have Metamask wallet to interact with Edupad. Check out how to create Metamask wallet from [here](https://metamask.io/download). Please add Educhain network in your account and some test funds to try this cool project.
+
+Follow the instructions for the local environment: The user must have Node.js and npm to run this platform. Just download Node.js from [here](https://nodejs.org/en/download/).
+
+### Setup Instructions
+
+Clone the repo via CLI:
+
+```sh
+git clone https://github.com/rkmonarch/edupad.git
+cd edupad
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install the required packages:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm install 
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Add environment variables from .env.example file
 
-## Learn More
+```sh
+cp .env.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+In the project directory, you can run:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
