@@ -44,7 +44,7 @@ const Card = ({ name, price, image, nftAddress }: Campaigns) => {
   useEffect(() => {
     if (status === "success" && isSuccess && isValid === "success") {
       setIsLoading(false);
-      toast.success("Purchase Successful", {
+      toast.success("Mint Successful", {
         style: {
           borderRadius: "10px",
         },

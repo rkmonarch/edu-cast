@@ -1,26 +1,37 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { eduChain } from "@/lib/config";
 import { launchPadNFTABI } from "@/lib/constants";
 import { MintProps } from "@/lib/types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { createPublicClient, getContract, http } from "viem";
-import { arbitrumSepolia } from "viem/chains";
-import { useAccount } from "wagmi";
+import {
+  createPublicClient,
+  formatEther,
+  getContract,
+  http,
+  parseEther,
+} from "viem";
+import {
+  useAccount,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 import Layout from "../Common/Layout";
 
 const Product = ({ params }: MintProps) => {
   const { address } = useAccount();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
+  const [price, setPrice] = useState<string>("0");
   const [image, setImage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isMinting, setIsMinting] = useState<boolean>(false);
 
   const publicClient = createPublicClient({
-    chain: arbitrumSepolia,
+    chain: eduChain,
     transport: http(),
   });
 
@@ -33,19 +44,17 @@ const Product = ({ params }: MintProps) => {
       });
 
       const contractUri = await nftContract.read.uri([0]);
-      const price = await nftContract.read.nftPrice([]);
+      const price = (await nftContract.read.nftPrice([])) as bigint;
       const metadata = await fetch(contractUri as string);
-
       const data = (await metadata.json()) as {
         name: string;
         description: string;
         image: string;
       };
-
       setName(data.name);
       setDescription(data.description);
       setImage(data.image);
-      setPrice(Number(price));
+      setPrice(formatEther(price));
     } catch (e) {
       toast.error("Failed to fetch metadata for this address");
     } finally {
@@ -53,11 +62,52 @@ const Product = ({ params }: MintProps) => {
     }
   };
 
-  useEffect(() => {
+  const { data, writeContract, status, isError } = useWriteContract();
+  const { isSuccess, status: isValid } = useWaitForTransactionReceipt({
+    hash: data,
+  });
+
+  const handleMint = async () => {
+    setIsMinting(true);
     if (address) {
-      getMetadata();
+      writeContract({
+        account: address,
+        address: params.address as `0x${string}`,
+        abi: launchPadNFTABI,
+        functionName: "nftMint",
+        value: parseEther(price.toString()),
+      });
+    } else {
+      setIsMinting(false);
+      toast.error("Please connect the wallet", {
+        style: {
+          borderRadius: "10px",
+        },
+      });
     }
-  }, [address]);
+  };
+
+  useEffect(() => {
+    if (status === "success" && isSuccess && isValid === "success") {
+      setIsMinting(false);
+      toast.success("Mint Successful", {
+        style: {
+          borderRadius: "10px",
+        },
+      });
+    } else if (isError) {
+      setIsMinting(false);
+      toast.error("Something went wrong", {
+        style: {
+          borderRadius: "10px",
+        },
+      });
+    }
+  }, [status, isSuccess, isError, isValid]);
+
+  useLayoutEffect(() => {
+    getMetadata();
+  }, []);
 
   return (
     <Layout>
@@ -81,7 +131,7 @@ const Product = ({ params }: MintProps) => {
                   <span className="bg-gradient-to-r from-cyan-300 to-sky-400 w-[8rem] h-10 rounded-lg mt-4" />
                 </div>
               </>
-            ) : name && description && price ? (
+            ) : name && description ? (
               <>
                 <img
                   className="mx-auto w-[20rem] h-[15rem] sm:h-[20rem] bg-gradient-to-tr from-teal-500 to-sky-400 rounded-lg object-fill"
@@ -106,14 +156,15 @@ const Product = ({ params }: MintProps) => {
                       height={200}
                     />
                     <p className="text-lg text-blue-500 dark:text-teal-400 font-medium">
-                      {price.toFixed(2)}
+                      {price} EDU
                     </p>
                   </div>
                   <button
-                    onClick={() => {}}
+                    onClick={handleMint}
+                    disabled={isMinting}
                     className="w-[8rem] h-10 bg-gradient-to-r from-cyan-300 to-sky-400 hover:shadow-lg text-neutral-800 font-semibold rounded-lg mt-4"
                   >
-                    Mint
+                    {isMinting ? "Minting..." : "Mint"}
                   </button>
                 </div>
               </>

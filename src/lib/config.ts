@@ -12,7 +12,7 @@ const metadata = {
   icons: ["/edupad.svg"],
 };
 
-const eduChain = defineChain({
+export const eduChain = defineChain({
   id: 656_476,
   name: "EduChain",
   nativeCurrency: {
